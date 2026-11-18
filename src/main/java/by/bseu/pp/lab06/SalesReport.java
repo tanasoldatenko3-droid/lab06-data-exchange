@@ -9,13 +9,27 @@ public final class SalesReport {
     public static List<Sale> filterByPeriod(List<Sale> sales, LocalDate from, LocalDate to) {
         Checks.sales(sales);
         Checks.period(from, to);
+
         // TODO 7: реализуйте по условию лабораторной работы.
-        throw new UnsupportedOperationException("TODO 7");
+        List<Sale> result = new ArrayList<>();
+        for (Sale sale : sales) {
+            LocalDate date = sale.getDate();
+            if (!date.isBefore(from) && !date.isAfter(to)) {
+                result.add(sale);
+            }
+        }
+        return result;
     }
+
     /** TODO 8. Сложить getAmount без округления. Пустой список даёт 0. */
     public static double totalAmount(List<Sale> sales) {
         Checks.sales(sales);
+
         // TODO 8: реализуйте по условию лабораторной работы.
-        throw new UnsupportedOperationException("TODO 8");
+        double total = 0.0;
+        for (Sale sale : sales) {
+            total += sale.getAmount();
+        }
+        return total;
     }
 }
